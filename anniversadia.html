@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 cose che amo di Nadia :3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Emilys+Candy&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-purple: #C3B1E1;
+            --accent-lilac: #E6E6FA;
+            --dark-purple: #967BB6;
+        }
+
+        body {
+            background: linear-gradient(45deg, var(--main-purple), var(--accent-lilac));
+            font-family: 'Emilys Candy', cursive;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.2'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        #container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Emilys Candy', cursive;
+            color: var(--dark-purple);
+            font-size: 3.5rem;
+            text-shadow: 2px 2px var(--accent-lilac);
+            margin: 20px 0;
+        }
+
+        #memory-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 5px;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .memory-square {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid var(--dark-purple);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--dark-purple);
+        }
+
+        .memory-square:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .memory-square.revealed {
+            background: var(--accent-lilac);
+            position: relative;
+        }
+
+        .memory-square.revealed::after {
+            content: '❤️';
+            position: absolute;
+            font-size: 1.2rem;
+        }
+
+        #memory-display {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px auto;
+            max-width: 600px;
+            min-height: 100px;
+            border: 2px dashed var(--dark-purple);
+            font-size: 1.2rem;
+        }
+
+        footer p {
+            color: var(--dark-purple);
+            font-size: 1rem;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .floating-heart {
+            position: fixed;
+            animation: float 3s ease-in-out infinite;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        @keyframes titleEntrance {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        header h1 {
+            animation: titleEntrance 1s ease-out;
+        }
+
+        .memory-square {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 1.94);
+        }
+
+        .memory-square.revealed {
+            animation: heartBeat 0.5s;
+            background: var(--accent-lilac);
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        #memory-display {
+            transition: transform 0.3s, opacity 0.3s;
+            transform-origin: top;
+        }
+
+        .new-message {
+            animation: messagePop 0.5s;
+        }
+
+        @keyframes messagePop {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            animation: sparkle 1s ease-out;
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-heart" style="left:10%; top:20%">❤️</div>
+    <div class="floating-heart" style="left:30%; top:50%">💖</div>
+    <div class="floating-heart" style="left:70%; top:30%">💝</div>
+    <div id="container">
+        <header>
+            <h1>100 cose che amo di Nadia :3</h1>
+        </header>
+        <main>
+            <div id="memory-grid"></div>
+            <div id="memory-display">
+                Clicca sui quadratini per scoprirle 💖
+            </div>
+        </main>
+        <footer>
+            <p>Luce soffusa // un canto al mattino // stare con te.
+                Ogni momento con te è stupendo - da miu con amore :3</p>
+        </footer>
+    </div>
+
+    <script>
+        const memories = [
+            "Sei molto mao",
+            "Mi dici che assomiglio a Timothee",
+            "Siamo una power couple",
+            "Mi motivi a fare le cose",
+            "Sei super brava a scrivere paper",
+            "Hai dei capelli liscissimi bellissimi",
+            "Cuciniamo biscotti buonissimi",
+            "Sei bona :3",
+            "Ti prendi cura della tua casetta",
+            "Mi insegni i giochi di carte",
+            "Mi fai i capelli fighi col Dyson",
+            "Mi fai sempre regalini belli",
+            "Mi hai portato a Venezia super slay",
+            "Fai le videochiamate con me quando devo tornare",
+            "Ti piace vedere film con me",
+            "Ogni tanto ti addormenti su di mentre vediamo i film",
+            "Le coccoline :3",
+            "Inventi sul momento canzoni che fanno crepare",
+            "I tuoi giochi di parole",
+            "Quando siamo stanchi e stiamo a casa tua a collassare",
+            "Ti piace programmare (bimba stem)",
+            "Fantasticare su noi che siamo ordinari",
+            "Fantasticare su noi che abbiamo una bella casetta e dei bimbi",
+            "Le tue tette :3",
+            "Come ti sta bene il pigiamino di miffy",
+            "Quanto sei brava a decorare la hobonichi",
+            "Gli acquisti fighissimi che fai da ali express per due euro",
+            "Quando facciamo gli scemi e facciamo la lotta",
+            "Quando mi nascondo e ti faccio spaventare",
+            "Quando mi sto addormentando e mi fai bu",
+            "Quando mi dai schiaffetti (piano)",
+            "Quando abbiamo presentato insieme a ics e helmeto",
+            "Sei bravissima con minecraft",
+            "Sai preparare lezioni super fighe",
+            "Mi consoli quando sono triste o overwhelmed",
+            "Giocare a pokemon insieme",
+            "Il tuo culo :3",
+            "I tuoi occhi marroni bellissimi e il fatto che si abbinano ai miei",
+            "Mi fai foto super fighe",
+            "Vedere Glee con te al laboratorio",
+            "Quando siamo andati ad Accadia e siamo stati tutta la sera insieme",
+            "Quando ci siamo ubriacati al Lazy Cat",
+            "Quando ci siamo ubriacati a Siviglia con le tequila",
+            "Il karaoke al papone",
+            "La cioccolata bianca da Annese",
+            "Il nostro primo san valentino :3",
+            "Andare al cinema e abbracciarti",
+            "Andare a teatro insieme",
+            "Girare per le strade di londra",
+            "Mangiare il ramen a cracovia",
+            "Visitare il castello di dracula >:3",
+            "I panini buonissimi del ristorante",
+            "Il sushi insieme",
+            "Grindare tutto il giorno quando abbiamo paper da consegnare o esami",
+            "Consolarti quando hai un complessino",
+            "Fare shopping con te",
+            "Girare per Bologna insieme",
+            "Mangiare le crepe di yuri a pesaro",
+            "Farci il bagno insieme al mare",
+            "Vedere le serie tutto il pomeriggio",
+            "Le tue poesie e i tuoi disegni",
+            "Quando fai versetti carini",
+            "Fare ninna insieme",
+            "Vedere sanremo insieme",
+            "Giudicare e poi dire 'ma chi siamo noi per giudicare'",
+            "Prendere tiramisu sacher e cheescake al cairoli",
+            "Mangiare la pizza di pizzalab gnam",
+            "Andare in bicicletta in giro per pesaro",
+            "Quando mi trovi ristoranti buonissimi in due secondi",
+            "Quando mi cucini cose buone :3",
+            "Perderci nei libri di velasquez tutto il pomeriggio",
+            "Ascoltare album nuovi fighi",
+            "Scopare la mattina presto hihi (e tutte le altre ore)",
+            "Pattinare insieme il 6 gennaio",
+            "Laurearci insieme slayando tantissimo",
+            "Vedere lana a milano",
+            "Andare sui kart rischiando di schiantarci",
+            "Ubriacarmi a pasquetta (con tutto il seguito)",
+            "Fare stop-motion e borse dei radiohead a firenze",
+            "Andare in giro con le felpe abbinate di cracovia",
+            "I tuoi biglietti super mega carini che mi fanno piangere",
+            "Conservare polaroid fighe insieme :3",
+            "Mandarci sticker in cui siamo clown",
+            "Flexarti in giro hihi",
+            "Visitare il museo delle stranezze a londra",
+            "Vedere tutta londra dall'alto allo shard come dei vip :3",
+            "Vederti scendere dal treno quando torni da me :3",
+            "Festeggiare il tuo compleanno a trani con la tua famiglia",
+            "Giocare al nintendo sugli aerei con te",
+            "Quando fai il labbruccio mao",
+            "La mia cartella segreta >:3",
+            "Scambiarci i boo basket",
+            "Fare costumi di coppia super slay ad halloween",
+            "Mettermi le tue cose prima di entrare nel tuo lettino",
+            "Giocare con i sylvanian families :3",
+            "Suonare e cantare insieme",
+            "Passare pomeriggi a esaurirci scrivendo le tesi",
+            "Inserirci nelle storie con l'ai",
+            "I tuoi occhiali da figa",
+            "Mi hai insegnato che i lampioni non hanno i vetri",
+        ];
+
+        const grid = document.getElementById('memory-grid');
+        const display = document.getElementById('memory-display');
+
+        for (let i = 0; i < 100; i++) {
+            const square = document.createElement('div');
+            square.className = 'memory-square';
+            square.dataset.index = i;
+
+            square.addEventListener('click', () => {
+                if (!square.classList.contains('revealed')) {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.style.left = `${event.pageX - 2}px`;
+                    sparkle.style.top = `${event.pageY - 2}px`;
+                    document.body.appendChild(sparkle);
+                    setTimeout(() => sparkle.remove(), 1000);
+
+                    square.classList.add('revealed');
+
+                    display.classList.remove('new-message');
+                    void display.offsetWidth; // Trigger reflow
+                    display.classList.add('new-message');
+
+                    const memory = memories[i] || "Una cosa che mi piace tanto tanto 💌";
+                    display.innerHTML = `${memory}<br><small>sei una mao #${i + 1}</small>`;
+
+                    const revealedCount = document.querySelectorAll('.revealed').length;
+                    if ((revealedCount % 25) === 0) {
+                        launchConfetti();
+                    }
+                }
+            });
+
+            grid.appendChild(square);
+        }
+
+        function launchConfetti() {
+            const emojis = ['🎉', '🎊', '💖', '✨', '🌸', '💫'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                confetti.style.position = 'fixed';
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.top = `${Math.random() * -50}%`;
+                confetti.style.fontSize = `${20 + Math.random() * 20}px`;
+                confetti.style.zIndex = '9999';
+                confetti.style.animation = `confettiFall ${3 + Math.random() * 2}s linear`;
+                document.body.appendChild(confetti);
+
+                setTimeout(() => confetti.remove(), 4000);
+            }
+        }
+
+        const style = document.createElement('style');
+        style.textContent = `
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    `;
+
+        document.head.appendChild(style);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const hearts = ['❤️', '💖', '💝'];
+            for (let i = 0; i < 5; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = `${Math.random() * 90}%`;
+                heart.style.top = `${Math.random() * 90}%`;
+                heart.style.animationDelay = `${Math.random() * 2}s`;
+                document.body.appendChild(heart);
+            }
+        });
+    </script>
+</body>
+</html>
